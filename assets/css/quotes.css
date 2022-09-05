@@ -1,6 +1,10 @@
 .center {
   margin: auto;
   width: 50%;
-  border: 3px solid green;
+  border: 3px ;
   padding: 10px;
+}
+
+.quote {
+  font-size: 400px;
 }
