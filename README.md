@@ -10,13 +10,15 @@ Collection of hacktime project
 
 ## Quotes
 ### To Do
-* Integrate generic template to quote page
+* Add github action to add quote to json and PR
+
 
 * silly and inpirational quotes
 * display one and have button to ask for another
 * way to contribute a quote
 * tags for quotes ex. sunny
+* Auto send github issue request from the site
 
 
 ## Map
-* something with geolocation 
+* something with geolocation
