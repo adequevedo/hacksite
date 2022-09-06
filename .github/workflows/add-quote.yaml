@@ -2,6 +2,7 @@ name: add-quote
 on:
   issues:
     types: [opened, edited]
+  issue_comment: 
 jobs:
   quote:
     # if: github.event.issue.label == "quote"
