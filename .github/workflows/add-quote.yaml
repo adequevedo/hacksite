@@ -1,5 +1,7 @@
 name: add-quote
-on: [issue_create]
+on:
+  issues:
+    types: opened
 jobs:
   quote:
     # if: github.event.issue.label == "quote"
