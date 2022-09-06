@@ -1,0 +1,32 @@
+name: add-quote
+on: [issue_create]
+jobs:
+  quote:
+    # if: github.event.issue.label == "quote"
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo $GITHUB_CONTEXT
+      - uses: actions/checkout@v3
+      - uses: actions/github-script@v6
+        with:
+          script: |
+
+            # Respond to comment
+            github.rest.issues.createComment({
+              issue_number: context.issue.number,
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              body: '👋 Thanks for reporting!'
+            })
+
+            #Branch and create commit
+            octokit.rest.git.createCommit({
+              owner,
+              repo,
+              message,
+              tree,
+              author.name,
+              author.email
+            })
+
+            # PR the change
