@@ -1,8 +1,15 @@
-var quotes = [
-  "Q1 this is what a whole sentance will look like spacing wise. Maybe there will even be more -Alex",
-  "Q2 this is what a whole sentance will look like spacing wise. Maybe there will even be more -Alex",
-  "Q3 Q1 this is what a whole sentance will look like spacing wise. Maybe there will even be more -Alex"
-]
+const quotes = {
+	"key1": {
+		"quote": "this is an example quote",
+		"author": "me",
+		"tags": ["funny", "iasip"]
+	},
+	"key2": {
+		"quote": "this is an example quote 2",
+		"author": "me",
+		"tags": ["inspo"]
+	}
+}
 
 // const quotes = require('./quotes.json');
 //
@@ -11,6 +18,10 @@ function newQuote(){
   //   .then(response => response.json())
   //   .then(data => console.log(data))
   //   .catch(error => console.log(error));
-  var randomNumber = Math.floor(Math.random() * (quotes.length));
-  document.getElementById('quoteDisplay').innerHTML = quotes[randomNumber];
+  var keys = Object.keys(quotes);
+  var randomKey = quotes[keys[ keys.length * Math.random() << 0]];
+  // for (var point in quotes){
+  //   console.log(quotes[point]["quote"])
+  // }
+  document.getElementById('quoteDisplay').innerHTML = randomKey["quote"];
 }

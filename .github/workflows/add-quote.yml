@@ -1,0 +1,58 @@
+name: add-quote
+on:
+  issues:
+    types: [opened, edited]
+  issue_comment:
+jobs:
+  add_quote:
+    # if: github.event.issue.label == "quote"
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo "$GITHUB_CONTEXT"
+      - uses: actions/checkout@v3
+      - uses: actions/github-script@v6
+        with:
+          script: |
+
+            # Respond to comment
+            github.rest.issues.createComment({
+              issue_number: context.issue.number,
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              body: '👋 Thanks for reporting!'
+            })
+
+            # update quote file
+            const fs = require('fs');
+
+            let rawdata = fs.readFileSync('quotes.json');
+            let data = JSON.parse(rawdata);
+            console.log(data);
+
+            data["key3"] = {
+                            "quote": "this is an example quote 3",
+                            "author": "me",
+                            "tags": ["hard"]
+                           }
+
+
+            console.log(data);
+            data = JSON.stringify(data);
+            fs.writeFileSync("quotes2.json", data);
+            const content = Buffer.from(JSON.stringify(data), "utf8").toString("base64")
+
+
+            # Push new file to repo to update quote object
+            await octokit.request('PUT /repos/{owner}/{repo}/contents/{path}', {
+              owner: 'adequevedo',
+              repo: 'hacksite',
+              path: 'quotes2.json',
+              message: 'my commit message',
+              committer: {
+                name: 'Github Action',
+                email: 'octocat@github.com'
+              },
+              content: 'bXkgbmV3IGZpbGUgY29udGVudHM='
+            })
+
+            # PR the change

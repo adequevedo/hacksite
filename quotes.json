@@ -1,5 +1,12 @@
-{[
-  "Q1 this is what a whole sentance will look like spacing wise. Maybe there will even be more -Alex",
-  "Q2 this is what a whole sentance will look like spacing wise. Maybe there will even be more -Alex",
-  "Q3 Q1 this is what a whole sentance will look like spacing wise. Maybe there will even be more -Alex"
-]}
+{
+	"key1": {
+		"quote": "this is an example quote",
+		"author": "me",
+		"tags": ["funny", "iasip"]
+	},
+	"key2": {
+		"quote": "this is an example quote 2",
+		"author": "me",
+		"tags": ["inspo"]
+	}
+}

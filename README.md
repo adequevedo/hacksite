@@ -23,6 +23,7 @@ Collection of hacktime project
 * way to contribute a quote
 * tags for quotes ex. sunny
 * Auto send github issue request from the site
+* Easter egg - https://www.willmaster.com/library/features/how-to-make-an-easter-egg.php 
 
 
 ## Map
@@ -32,3 +33,9 @@ Collection of hacktime project
 ### Links:
 * https://cloud.google.com/storage/docs/hosting-static-website
 * https://medium.com/swlh/setup-a-static-website-cdn-with-terraform-on-gcp-23c6937382c6
+
+
+
+# WIP
+* Workflow to add quote to json
+* Infra for hosting
