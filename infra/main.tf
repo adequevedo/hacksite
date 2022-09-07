@@ -1,3 +1,12 @@
+terraform {
+  required_providers {
+    google = {
+      source = "hashicorp/google"
+      version >= "3.5.0"
+    }
+  }
+}
+
 # GCP provider
 provider "google" {
   credentials  = file(var.gcp_svc_key)
@@ -6,17 +15,29 @@ provider "google" {
 }
 
 # GCP beta provider
-provider "google-beta" {
-  credentials  = file(var.gcp_svc_key)
-  project      = var.gcp_project
-  region       = var.gcp_region
-}
+# provider "google-beta" {
+#   credentials  = file(var.gcp_svc_key)
+#   project      = var.gcp_project
+#   region       = var.gcp_region
+# }
 
 # Bucket to store website
-resource "google_storage_bucket" "website" {
+resource "google_storage_bucket" "hacksite" {
   provider = google
-  name     = "coffeetime-website"
+  name     = "hacktime-site"
   location = "US"
+
+  website {
+    main_page_suffix = "index.html"
+    not_found_page   = "404.html"
+  }
+  cors {
+    origin          = ["http://image-store.com"]
+    method          = ["GET", "HEAD", "PUT", "POST", "DELETE"]
+    response_header = ["*"]
+    max_age_seconds = 3600
+  }
+
 }
 
 # Make new objects public
@@ -51,7 +72,7 @@ resource "google_dns_record_set" "website" {
 # Add the bucket as a CDN backend
 resource "google_compute_backend_bucket" "website" {
   provider    = google
-  name        = "website-backend"
+  name        = "hacksite-backend"
   description = "Contains files needed by the website"
   bucket_name = google_storage_bucket.website.name
   enable_cdn  = true
@@ -60,7 +81,7 @@ resource "google_compute_backend_bucket" "website" {
 # Create HTTPS certificate
 resource "google_compute_managed_ssl_certificate" "website" {
   provider = google-beta
-  name     = "website-cert"
+  name     = "hacksite-cert"
   managed {
     domains = [google_dns_record_set.website.name]
   }
