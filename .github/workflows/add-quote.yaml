@@ -8,7 +8,10 @@ jobs:
     # if: github.event.issue.label == "quote"
     runs-on: ubuntu-latest
     steps:
-      - run: echo "$GITHUB_CONTEXT"
+      - name: Dump GitHub context
+        run: echo "$GITHUB_CONTEXT"
+        env:
+          GITHUB_CONTEXT: ${{ toJSON(github) }}
       - uses: actions/checkout@v3
       - uses: actions/github-script@v6
         with:
