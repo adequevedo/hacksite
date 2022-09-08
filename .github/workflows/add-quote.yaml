@@ -1,0 +1,25 @@
+name: add-quote
+on:
+  issues:
+    types: [opened, edited]
+  issue_comment:
+jobs:
+  quote:
+    if: contains(github.event.issue.labels.*.name, 'quote')
+    runs-on: ubuntu-latest
+    steps:
+      - name: Dump GitHub context
+        run: echo "$GITHUB_CONTEXT"
+        env:
+          GITHUB_CONTEXT: ${{ toJSON(github) }}
+      - uses: actions/checkout@v3
+      - uses: actions/github-script@v6
+        with:
+          script: |
+            // Respond to comment
+            github.rest.issues.createComment({
+              issue_number: context.issue.number,
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              body: '👋 Thanks for adding! This issue will be closed when it is added.'
+            })
