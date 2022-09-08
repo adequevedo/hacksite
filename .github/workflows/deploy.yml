@@ -1,0 +1,24 @@
+# name: Deploy to Bucket
+# on:
+#   issues:
+#     types: [opened, edited]
+#   issue_comment:
+# jobs:
+#   deploy:
+#     # if: github.event.issue.label == "quote"
+#     runs-on: ubuntu-latest
+#     steps:
+#       - run: echo "$GITHUB_CONTEXT"
+#       - uses: actions/checkout@v3
+#       - run: rm -rf infra/
+#       - id: 'auth'
+#       uses: 'google-github-actions/auth@v0'
+#       with:
+#         workload_identity_provider: 'projects/123456789/locations/global/workloadIdentityPools/my-pool/providers/my-provider'
+#         service_account: 'my-service-account@my-project.iam.gserviceaccount.com'
+#
+#       - id: 'upload-folder'
+#         uses: 'google-github-actions/upload-cloud-storage@v0'
+#         with:
+#           path: './'
+#           destination: 'hacktime-site'
