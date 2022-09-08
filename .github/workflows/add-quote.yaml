@@ -16,47 +16,10 @@ jobs:
       - uses: actions/github-script@v6
         with:
           script: |
-            # Parse quote from issue
-
-            // var s1 = "random ```code block ``` stuff "
-            // var s2 = "``fdfdjk``"
-            // const regex = /```(.*?)```/
-            //
-            //
-            // var s3 = s1.match(regex)
-            // console.log(s3[0])
-            //
-            // s4 = s3[0].replace("```", "")
-            // console.log(s4)
-            //
-            // s5 = s4.replace("```", "")
-            // console.log(s5)
-
-            const fs = require('fs');
-
-            let rawdata = fs.readFileSync('quotes.json');
-            let data = JSON.parse(rawdata);
-            console.log(data);
-
-            newKey = #hash quote to get key
-
-            data[newKey] = {
-                            "quote": parsedQuote,
-                            "author": "me",
-                            "tags": ["hard"]
-                           }
-
-
-            console.log(data);
-            data = JSON.stringify(data);
-            fs.writeFileSync("quotes2.json", data);
-
-            # Update file in repo
-
-            # Respond to comment
+            // Respond to comment
             github.rest.issues.createComment({
               issue_number: context.issue.number,
               owner: context.repo.owner,
               repo: context.repo.repo,
-              body: '👋 Thanks for reporting!'
+              body: '👋 Thanks for adding! This issue will be closed when it is added.'
             })
