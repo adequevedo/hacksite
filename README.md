@@ -7,9 +7,11 @@ Collection of hacktime project
 * terraform
 * github actions
 * error page
+* static site bucket vs cloud run costs comparison
 
 ## Hosting
 * Cloud run vs bucket storage
+* SSL cert created manually due to time to provision
 
 
 
@@ -23,7 +25,7 @@ Collection of hacktime project
 * way to contribute a quote
 * tags for quotes ex. sunny
 * Auto send github issue request from the site
-* Easter egg - https://www.willmaster.com/library/features/how-to-make-an-easter-egg.php 
+* Easter egg - https://www.willmaster.com/library/features/how-to-make-an-easter-egg.php
 
 
 ## Map
@@ -39,3 +41,15 @@ Collection of hacktime project
 # WIP
 * Workflow to add quote to json
 * Infra for hosting
+  * More variables
+* change lb to https 
+
+## commands
+storage url
+`https://storage.googleapis.com/hacktime-site/index.html`
+
+LB URL
+`https://www.googleapis.com/compute/v1/projects/hacktime-site/global/backendBuckets/hacksite-backend-bucket`
+
+copy files - needs to exclude state
+`gsutil cp -r ./* gs://hacktime-site/`

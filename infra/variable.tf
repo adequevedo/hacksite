@@ -1,8 +1,8 @@
 variable "gcp_project" {
-  type = string
+  type    = string
   default = "hacktime-site"
 }
 variable "gcp_region" {
-  type = string
+  type    = string
   default = "us-east1"
 }
