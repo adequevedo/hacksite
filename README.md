@@ -6,7 +6,8 @@ Collection of hacktime project
 ## Hosting
 * SSL cert created manually due to time to provision
 
-## Workflows 
+## Workflows
+deploy - add input for version for workflow_dispatch
 
 ## Quotes
 ### To Do
